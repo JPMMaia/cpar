@@ -22,7 +22,7 @@ public class prog_java {
 				b[i*l + j] = (double)(i+1);
 				
 				
-		startTime = System.currentTimeMillis();
+		startTime = System.nanoTime();
 		
 		if (line) {
 			for(i=0; i<l; i++) {	
@@ -42,9 +42,9 @@ public class prog_java {
 			}
 		}
 				
-		endTime = System.currentTimeMillis();
+		endTime = System.nanoTime();
 		
-		return (double) (endTime - startTime) / 1000;
+		return (double) (endTime - startTime) / 1e9;
 		//System.out.println("Time: " + elapsedTime + "seconds");
 		
 		/*System.out.println("Result matrix: ");
@@ -66,6 +66,7 @@ public class prog_java {
 			while(reader.hasNext()) {
 				boolean line_mult = (reader.nextInt() != 0);
 				int size = reader.nextInt();
+				int n_omp = reader.nextInt();
 				
 				double time = OnMult(size, line_mult);
 		
