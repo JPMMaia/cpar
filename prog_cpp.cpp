@@ -5,6 +5,7 @@
 #include <time.h>
 #include <cstdlib>
 #include <papi.h>
+#include <sys/time.h>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ using namespace std;
 double OnMult(int size, bool line_mult, unsigned n_omp) 
 {
 	
-	SYSTEMTIME Time1, Time2;
+	timespec Time1, Time2;
 	
 	char st[100];
 	double temp;
@@ -39,7 +40,7 @@ double OnMult(int size, bool line_mult, unsigned n_omp)
 
 
 
-    Time1 = clock();
+    clock_gettime(CLOCK_REALTIME, &Time1);
 
 	if(n_omp == 0) {
 		// Normal Calculation
@@ -88,7 +89,7 @@ double OnMult(int size, bool line_mult, unsigned n_omp)
 		}
 	}
 
-    Time2 = clock();
+    clock_gettime(CLOCK_REALTIME, &Time2);
 
 
 	/*
@@ -104,7 +105,10 @@ double OnMult(int size, bool line_mult, unsigned n_omp)
     free(b);
     free(c);
 	
-	return (double)(Time2 - Time1) / CLOCKS_PER_SEC;
+	double t1 = Time1.tv_sec + ((double)Time1.tv_nsec)/1e9;
+	double t2 = Time2.tv_sec + ((double)Time2.tv_nsec)/1e9;
+	
+	return t2 - t1;
 	
 }
 

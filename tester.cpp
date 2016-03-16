@@ -9,20 +9,28 @@ using namespace std;
 
 int main(int argc, char** argv) {
 		
-	/*
-	for(int line_mult = 0; line_mult<=1; line_mult++)
-	for(int size = 600; size <= 3000; size += 400) {
-		
-		cout << line_mult << " " << size << endl;
-
-	}*/
+	int alg = 1;
+	int n_omp = 0;
+	int size_min = 600;
+	int size_max = 3000;
+	int size_inc = 400;
 	
-	for(int line_mult = 0; line_mult<=1; line_mult++)
-	for(int i = 0; i <= 4; i++) {
+	if (argc > 1) alg = 	atoi(argv[1]);
+		if (alg > 1) return 1;
+	if (argc > 2) n_omp = 	atoi(argv[2]);
+		if (alg > 8) return 1;
+	if (argc > 3) size_min = atoi(argv[3]);
+	if (argc > 4) size_max = atoi(argv[4]);
+	if (argc > 5) size_inc = atoi(argv[5]);
 		
-		cout << line_mult << " 1000 " << i << endl;
+	
+	for(int line_mult = 0; line_mult<=alg; line_mult++) {
+	for(int i = 0; i <= n_omp; i++) {
+	for(int size = size_min; size <= size_max; size += size_inc) {
+		
+		cout << line_mult << " " << size << " " << i << endl;
 
-	}
+	}}}
 	
 	return 0;
 }

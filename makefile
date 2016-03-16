@@ -12,18 +12,14 @@ prog_java:
 clean:
 	\rm *.o *.class *.out
 
-test:
-	make all
-	echo C++
-	./tester.o | ./prog_cpp.o
-	echo Java
-	./tester.o | java prog_java	
+test_cpp_omp:
+	echo "C++ with OMP \n\n\n"
+	./tester.o 1 8 600 3000 400 | ./prog_cpp.o
 	
-test_file:
-	make all
-	echo C++ > output.out
-	./tester.o | ./prog_cpp.o >> output.out
-	echo Java >> output.out
-	./tester.o | java prog_java >> output.out
+test_cpp_vs_java:
+	echo C++
+	./tester.o 1 0 600 3000 400 | ./prog_cpp.o
+	echo Java
+	./tester.o 1 0 600 3000 400 | java prog_java
 
 
