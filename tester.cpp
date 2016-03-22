@@ -24,13 +24,12 @@ int main(int argc, char** argv) {
 	if (argc > 5) size_inc = atoi(argv[5]);
 		
 	
-	for(int line_mult = 0; line_mult<=alg; line_mult++) {
 	for(int i = 0; i <= n_omp; i++) {
 	for(int size = size_min; size <= size_max; size += size_inc) {
 		
-		cout << line_mult << " " << size << " " << i << endl;
+		cout << alg << " " << size << " " << i << endl;
 
-	}}}
+	}}
 	
 	return 0;
 }
